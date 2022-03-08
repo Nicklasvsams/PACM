@@ -1,25 +1,63 @@
-﻿namespace PACM.BL
+﻿using System.Collections.Generic;
+
+namespace PACM.BL
 {
     public class Customer
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string HomeAddress { get; set; }
-        public string WorkAddress { get; set; }
+        public Customer(): this(0)
+        {
+
+        }
+
+        public Customer(int customerId)
+        {
+            Id = customerId;
+            AddressList = new List<Address>();
+        }
+
+        public int Id { get; private set; }
+        public int CustomerType { get; set; }
+        public string FirstName { get; set; }
+        public string FullName 
+        { 
+            get
+            {
+                string fullName = LastName;
+                if (!string.IsNullOrWhiteSpace(FirstName))
+                {
+                    if (!string.IsNullOrWhiteSpace(fullName))
+                    {
+                        fullName += ", ";
+                    }
+                    fullName += FirstName;
+                }
+                return fullName;
+            }
+        }
+        private string _lastName;
+        public string LastName 
+        {
+            get 
+            {
+                return _lastName;
+            }
+            set
+            {
+                _lastName = value;
+            }
+        }
+        public string EmailAddress { get; set; }
+        public List<Address> AddressList { get; set; }
 
         public bool Validate()
         {
-            return true;
+            var isValid = true;
+
+            if(string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress))isValid = false;
+
+            return isValid;
         }
 
-        public Customer Retrieve()
-        {
-            return this;
-        }
-
-        public void Save()
-        {
-            
-        }
+        public override string ToString() => FullName;
     }
 }

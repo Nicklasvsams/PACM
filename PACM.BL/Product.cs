@@ -1,24 +1,36 @@
 ﻿namespace PACM.BL
 {
-    public class Product
+    public class Product : EntityBase
     {
-        public string ProductName { get; set; }
+        public Product()
+        {
+
+        }
+
+        public Product(int productId)
+        {
+            Id = productId;
+        }
+
+        public int Id { get; private set; }
+        private string _name { get; set; }
+        public string Name 
+        {
+            get { return _name; }
+            set { _name = value; } 
+        }
         public string Description { get; set; }
-        public float CurrentPrice { get; set; }
+        public decimal? CurrentPrice { get; set; }
 
-        public bool Validate()
+        public override bool Validate()
         {
-            return true;
+            var isValid = true;
+
+            if(string.IsNullOrWhiteSpace(Name) || CurrentPrice == null) isValid = false;
+
+            return isValid;
         }
 
-        public Product Retrieve()
-        {
-            return this;
-        }
-
-        public void Save()
-        {
-
-        }
+        public override string ToString() => Name;
     }
 }
