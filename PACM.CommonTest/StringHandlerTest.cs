@@ -10,13 +10,11 @@ namespace PACM.CommonTest
         public void InsertSpacesTestValid()
         {
             // Arrange
-            var handler = new StringHandler();
-
             var source = "SonicScrewdriver";
             var expected = "Sonic Screwdriver";
 
             // Act
-            var actual = handler.InsertSpaces(source);
+            var actual = source.InsertSpaces();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -26,13 +24,11 @@ namespace PACM.CommonTest
         public void InsertSpacesTestWithExistingSpace()
         {
             // Arrange
-            var handler = new StringHandler();
-
             var source = "Sonic Screwdriver";
             var expected = "Sonic Screwdriver";
 
             // Act
-            var actual = handler.InsertSpaces(source);
+            var actual = source.InsertSpaces();
 
             // Assert
             Assert.AreEqual(expected, actual);

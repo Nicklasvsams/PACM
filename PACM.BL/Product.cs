@@ -1,4 +1,6 @@
-﻿namespace PACM.BL
+﻿using PACM.Common;
+
+namespace PACM.BL
 {
     public class Product : EntityBase
     {
@@ -16,7 +18,10 @@
         private string _name { get; set; }
         public string Name 
         {
-            get { return _name; }
+            get 
+            {
+                return _name.InsertSpaces();
+            }
             set { _name = value; } 
         }
         public string Description { get; set; }
@@ -32,5 +37,7 @@
         }
 
         public override string ToString() => Name;
+
+        public string Log() => "ID: " + Id + " Description: " + Description + " Status: " + EntityState.ToString();
     }
 }

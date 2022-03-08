@@ -1,8 +1,8 @@
 ﻿namespace PACM.Common
 {
-    public class StringHandler
+    public static class StringHandler
     {
-        public string InsertSpaces(string source)
+        public static string InsertSpaces(this string source)
         {
             string result = string.Empty;
 

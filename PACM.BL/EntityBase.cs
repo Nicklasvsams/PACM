@@ -8,7 +8,7 @@
 
     public abstract class EntityBase
     {
-        public EntityStateOption EntityeState { get; set; }
+        public EntityStateOption EntityState { get; set; }
         public bool HasChanges { get; set; }
         public bool IsNew { get; set; }
         public bool IsValid => Validate();

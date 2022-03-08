@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PACM.Common;
+using System;
 using System.Collections.Generic;
 
 namespace PACM.BL
 {
-    public class Order
+    public class Order : EntityBase, ILoggable
     {
         public Order(): this(0)
         {
@@ -22,7 +23,7 @@ namespace PACM.BL
         public DateTimeOffset? OrderDate { get; set; }
         public List<OrderItem> OrderItems { get; set; }
         
-        private bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
 
@@ -32,5 +33,7 @@ namespace PACM.BL
         }
 
         public override string ToString() => "Order date: " + OrderDate.Value.Date + " ID: " + Id;
+
+        public string Log() => "ID: " + Id + " Customer ID: " + CustomerId + " Shipping Address ID: " + ShippingAddressId + " Order Date: " + OrderDate.Value.Date + " Status " + EntityState.ToString();
     }
 }
